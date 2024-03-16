@@ -20,19 +20,19 @@ Memory use by input file:
 
   Object File                                       RX Code     RO Data     RW Data     ZI Data
   ---------------------------------------------  ----------  ----------  ----------  ----------
-  assembly.o                                            396                      12            
+  assembly.o                                            640                      28            
   main.o                                                 28                                    
   SEGGER_RV32_crt0.o                                     76                                    
   ---------------------------------------------  ----------  ----------  ----------  ----------
-  Subtotal (3 objects)                                  500                      12            
+  Subtotal (3 objects)                                  744                      28            
   ---------------------------------------------  ----------  ----------  ----------  ----------
   SEGGER_RV32_crtinit_rv32i_balanced.a                  216                                    
   ---------------------------------------------  ----------  ----------  ----------  ----------
   Subtotal (1 archives)                                 216                                    
   ---------------------------------------------  ----------  ----------  ----------  ----------
-  Linker created (shared data, fills, blocks):                       32                   1 024
+  Linker created (shared data, fills, blocks):                       48                   1 024
   =============================================  ==========  ==========  ==========  ==========
-  Total:                                                716          32          12       1 024
+  Total:                                                960          48          28       1 024
   =============================================  ==========  ==========  ==========  ==========
 
 Memory use by archive member:
@@ -43,25 +43,25 @@ Memory use by archive member:
                                                         216                                    
   ---------------------------------------------  ----------  ----------  ----------  ----------
   Subtotal (1 members from 1 archives)                  216                                    
-  Objects (3 files)                                     500                      12            
-  Linker created (shared data, fills, blocks):                       32                   1 024
+  Objects (3 files)                                     744                      28            
+  Linker created (shared data, fills, blocks):                       48                   1 024
   =============================================  ==========  ==========  ==========  ==========
-  Total:                                                716          32          12       1 024
+  Total:                                                960          48          28       1 024
   =============================================  ==========  ==========  ==========  ==========
 
 Memory use by linker:
 
   Description                                       RX Code     RO Data     RW Data     ZI Data
   ---------------------------------------------  ----------  ----------  ----------  ----------
-  Initialization table                                               32                        
+  Initialization table                                               48                        
   Memory for block 'stack'                                                                1 024
   ---------------------------------------------  ----------  ----------  ----------  ----------
-  Subtotal (linker created):                                         32                   1 024
+  Subtotal (linker created):                                         48                   1 024
   ---------------------------------------------  ----------  ----------  ----------  ----------
-  Objects (3 files)                                     500                      12            
+  Objects (3 files)                                     744                      28            
   Archives (1 files)                                    216                                    
   =============================================  ==========  ==========  ==========  ==========
-  Total:                                                716          32          12       1 024
+  Total:                                                960          48          28       1 024
   =============================================  ==========  ==========  ==========  ==========
 
 
@@ -76,18 +76,18 @@ Sections by address:
   Range              Symbol or [section] Name         Size  Al  Init  Ac  Object File
   -----------------  -------------------------  ----------  --  ----  --  -----------
   00000000-0000004b  _start                             76   4  Code  RX  SEGGER_RV32_crt0.o
-  0000004c-000001d7  KATAN32                           396   4  Code  RX  assembly.o
-  000001d8-000001f3  main                               28   4  Code  RX  main.o
-  000001f4-00000293  trap_entry                        160   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  00000294-00000297  handle_trap                         4   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  00000298-0000029b  _init                               4   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  0000029c-000002cb  __SEGGER_init_copy                 48   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  000002cc-000002df  __SEGGER_init_table__              20   4  Cnst  RO  [ Linker created ]
-  000002e0-000002eb  __SEGGER_init_data__               12   4  Cnst  RO  [ Linker created ]
-  000002ec-1fffffff  ( UNUSED .=.+536870164 )   536 870 164
+  0000004c-000002cb  MAIN                              640   4  Code  RX  assembly.o
+  000002cc-000002e7  main                               28   4  Code  RX  main.o
+  000002e8-00000387  trap_entry                        160   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  00000388-0000038b  handle_trap                         4   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  0000038c-0000038f  _init                               4   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  00000390-000003bf  __SEGGER_init_copy                 48   4  Code  RX  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  000003c0-000003d3  __SEGGER_init_table__              20   4  Cnst  RO  [ Linker created ]
+  000003d4-000003ef  __SEGGER_init_data__               28   4  Cnst  RO  [ Linker created ]
+  000003f0-1fffffff  ( UNUSED .=.+536869904 )   536 869 904
                                                              -  ----  -   -
-  20000000-2000000b  plain_text                         12   1  Init  RW  assembly.o
-  2000000c-2000fbff  ( UNUSED .=.+64500 )           64 500   -  ----  -   -
+  20000000-2000001b  plain_text                         28   1  Init  RW  assembly.o
+  2000001c-2000fbff  ( UNUSED .=.+64484 )           64 484   -  ----  -   -
   2000fc00-2000ffff  [.bss.block.stack]              1 024   8  None  ZI  [ Linker created ]
 
 
@@ -101,15 +101,15 @@ Function symbols by name:
 
   Symbol name                   Address        Size  Align  Type  Bd  Object File
   -------------------------  ----------  ----------  -----  ----  --  -----------
-  __SEGGER_init_copy         0x0000029C          48      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  __SEGGER_init_copy         0x00000390          48      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
   __SEGGER_init_done         0x00000040                  4  Code  Gb  SEGGER_RV32_crt0.o
   __startup_complete         0x00000040                  4  Code  Gb  SEGGER_RV32_crt0.o
-  _init                      0x00000298         [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  _init                      0x0000038C         [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
   _start                     0x00000000          88      4  Code  Gb  SEGGER_RV32_crt0.o
   exit                       0x00000048           4      4  Code  Gb  SEGGER_RV32_crt0.o
-  handle_trap                0x00000294         [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  main                       0x000001D8          32      4  Code  Gb  main.o
-  trap_entry                 0x000001F4       [160]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  handle_trap                0x00000388         [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  main                       0x000002CC          32      4  Code  Gb  main.o
+  trap_entry                 0x000002E8       [160]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
 
 Function symbols by address:
 
@@ -119,11 +119,11 @@ Function symbols by address:
   0x00000040  __startup_complete                         4  Code  Gb  SEGGER_RV32_crt0.o
   0x00000040  __SEGGER_init_done                         4  Code  Gb  SEGGER_RV32_crt0.o
   0x00000048  exit                                4      4  Code  Gb  SEGGER_RV32_crt0.o
-  0x000001D8  main                               32      4  Code  Gb  main.o
-  0x000001F4  trap_entry                      [160]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  0x00000294  handle_trap                       [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  0x00000298  _init                             [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
-  0x0000029C  __SEGGER_init_copy                 48      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  0x000002CC  main                               32      4  Code  Gb  main.o
+  0x000002E8  trap_entry                      [160]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  0x00000388  handle_trap                       [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  0x0000038C  _init                             [4]      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
+  0x00000390  __SEGGER_init_copy                 48      4  Code  Wk  SEGGER_RV32_crtinit.o (SEGGER_RV32_crtinit_rv32i_balanced.a)
 
 Function symbols by descending size:
 
@@ -146,8 +146,8 @@ Read-only data symbols by name:
   
   Symbol name                   Address     Access        Size  Align  Type  Bd  Object File
   -------------------------  ----------  ---------  ----------  -----  ----  --  -----------
-  __SEGGER_init_data__       0x000002E0  tp-0x0520        [12]      4  Cnst  Lc  [ Linker created ]
-  __SEGGER_init_table__      0x000002CC  tp-0x0534        [20]      4  Cnst  Lc  [ Linker created ]
+  __SEGGER_init_data__       0x000003D4  tp-0x042C        [28]      4  Cnst  Lc  [ Linker created ]
+  __SEGGER_init_table__      0x000003C0  tp-0x0440        [20]      4  Cnst  Lc  [ Linker created ]
 
 Read-only data symbols by address:
 
@@ -156,8 +156,8 @@ Read-only data symbols by address:
   
      Address     Access  Symbol name                      Size  Align  Type  Bd  Object File
   ----------  ---------  -------------------------  ----------  -----  ----  --  -----------
-  0x000002CC  tp-0x0534  __SEGGER_init_table__            [20]      4  Cnst  Lc  [ Linker created ]
-  0x000002E0  tp-0x0520  __SEGGER_init_data__             [12]      4  Cnst  Lc  [ Linker created ]
+  0x000003C0  tp-0x0440  __SEGGER_init_table__            [20]      4  Cnst  Lc  [ Linker created ]
+  0x000003D4  tp-0x042C  __SEGGER_init_data__             [28]      4  Cnst  Lc  [ Linker created ]
 
 Untyped symbols by name:
 
@@ -166,23 +166,25 @@ Untyped symbols by name:
   
   Symbol name                     Value     Access        Size  Align  Type  Bd  Object File
   -------------------------  ----------  ---------  ----------  -----  ----  --  -----------
-  KATAN32                    0x0000004C  tp-0x07B4       [396]      4  Code  Gb  assembly.o
+  KATAN32                    0x00000058  tp-0x07A8                  4  Code  Lc  assembly.o
+  MAIN                       0x0000004C  tp-0x07B4       [640]      4  Code  Gb  assembly.o
+  RECTANGLE                  0x000001E0  tp-0x0620                  4  Code  Lc  assembly.o
   __FLASH1_segment_end__     0x00100000                                ----  Gb  [ Linker created ]
   __FLASH1_segment_size__    0x00100000                                ----  Gb  [ Linker created ]
   __FLASH1_segment_start__   0x00000000  tp-0x0800                     ----  Gb  [ Linker created ]
   __FLASH1_segment_used_end__
-                             0x000002EC  tp-0x0514                     ----  Gb  [ Linker created ]
+                             0x000003F0  tp-0x0410                     ----  Gb  [ Linker created ]
   __FLASH1_segment_used_size__
-                             0x000002EC  tp-0x0514                     ----  Gb  [ Linker created ]
+                             0x000003F0  tp-0x0410                     ----  Gb  [ Linker created ]
   __FLASH1_segment_used_start__
                              0x00000000  tp-0x0800                     ----  Gb  [ Linker created ]
   __FLASH_segment_end__      0x00100000                                ----  Gb  [ Linker created ]
   __FLASH_segment_size__     0x00100000                                ----  Gb  [ Linker created ]
   __FLASH_segment_start__    0x00000000  tp-0x0800                     ----  Gb  [ Linker created ]
   __FLASH_segment_used_end__
-                             0x000002EC  tp-0x0514                     ----  Gb  [ Linker created ]
+                             0x000003F0  tp-0x0410                     ----  Gb  [ Linker created ]
   __FLASH_segment_used_size__
-                             0x000002EC  tp-0x0514                     ----  Gb  [ Linker created ]
+                             0x000003F0  tp-0x0410                     ----  Gb  [ Linker created ]
   __FLASH_segment_used_start__
                              0x00000000  tp-0x0800                     ----  Gb  [ Linker created ]
   __HEAPSIZE__               0x00000400  tp-0x0400                     ----  Gb  [ Linker created ]
@@ -205,9 +207,9 @@ Untyped symbols by name:
   __global_pointer$          0x20000800  gp+0x0000                     ----  Gb  [ Linker created ]
   __stack_end__              0x20010000                                ----  Gb  [ Linker created ]
   __thread_pointer$          0x00000800  tp+0x0000                     ----  Gb  [ Linker created ]
-  katan_fn_a                 0x000000B4  tp-0x074C                  4  Code  Lc  assembly.o
-  katan_fn_b                 0x00000140  tp-0x06C0                  4  Code  Lc  assembly.o
-  plain_text                 0x20000000  gp-0x0800        [12]         Init  Lc  assembly.o
+  katan_fn_a                 0x000000BC  tp-0x0744                  4  Code  Lc  assembly.o
+  katan_fn_b                 0x00000148  tp-0x06B8                  4  Code  Lc  assembly.o
+  plain_text                 0x20000000  gp-0x0800        [28]         Init  Lc  assembly.o
 
 Untyped symbols by address:
 
@@ -222,16 +224,18 @@ Untyped symbols by address:
   0x00000000  tp-0x0800  __FLASH1_segment_used_start__
                                                                        ----  Gb  [ Linker created ]
   0x00000000  tp-0x0800  __FLASH1_segment_start__                      ----  Gb  [ Linker created ]
-  0x0000004C  tp-0x07B4  KATAN32                         [396]      4  Code  Gb  assembly.o
-  0x000000B4  tp-0x074C  katan_fn_a                                 4  Code  Lc  assembly.o
-  0x00000140  tp-0x06C0  katan_fn_b                                 4  Code  Lc  assembly.o
-  0x000002EC  tp-0x0514  __FLASH_segment_used_size__
+  0x0000004C  tp-0x07B4  MAIN                            [640]      4  Code  Gb  assembly.o
+  0x00000058  tp-0x07A8  KATAN32                                    4  Code  Lc  assembly.o
+  0x000000BC  tp-0x0744  katan_fn_a                                 4  Code  Lc  assembly.o
+  0x00000148  tp-0x06B8  katan_fn_b                                 4  Code  Lc  assembly.o
+  0x000001E0  tp-0x0620  RECTANGLE                                  4  Code  Lc  assembly.o
+  0x000003F0  tp-0x0410  __FLASH_segment_used_size__
                                                                        ----  Gb  [ Linker created ]
-  0x000002EC  tp-0x0514  __FLASH_segment_used_end__
+  0x000003F0  tp-0x0410  __FLASH_segment_used_end__
                                                                        ----  Gb  [ Linker created ]
-  0x000002EC  tp-0x0514  __FLASH1_segment_used_size__
+  0x000003F0  tp-0x0410  __FLASH1_segment_used_size__
                                                                        ----  Gb  [ Linker created ]
-  0x000002EC  tp-0x0514  __FLASH1_segment_used_end__
+  0x000003F0  tp-0x0410  __FLASH1_segment_used_end__
                                                                        ----  Gb  [ Linker created ]
   0x00000400  tp-0x0400  __STACKSIZE__                                 ----  Gb  [ Linker created ]
   0x00000400  tp-0x0400  __HEAPSIZE__                                  ----  Gb  [ Linker created ]
@@ -245,7 +249,7 @@ Untyped symbols by address:
   0x00100000             __FLASH_segment_end__                         ----  Gb  [ Linker created ]
   0x00100000             __FLASH1_segment_size__                       ----  Gb  [ Linker created ]
   0x00100000             __FLASH1_segment_end__                        ----  Gb  [ Linker created ]
-  0x20000000  gp-0x0800  plain_text                       [12]         Init  Lc  assembly.o
+  0x20000000  gp-0x0800  plain_text                       [28]         Init  Lc  assembly.o
   0x20000000  gp-0x0800  __RAM_segment_used_start__
                                                                        ----  Gb  [ Linker created ]
   0x20000000  gp-0x0800  __RAM_segment_start__                         ----  Gb  [ Linker created ]
@@ -268,15 +272,15 @@ Untyped symbols by address:
 
 Memory breakdown:
 
-      716 bytes read-only  code    + 
-       32 bytes read-only  data    =     748 bytes read-only (total)
-    1 036 bytes read-write data
+      960 bytes read-only  code    + 
+       48 bytes read-only  data    =   1 008 bytes read-only (total)
+    1 052 bytes read-write data
 
 Region summary:
 
   Name        Range                     Size                 Used               Unused       Alignment Loss
   ----------  -----------------  -----------  -------------------  -------------------  -------------------
-  FLASH       00000000-000fffff    1 048 576          748   0.07%    1 047 828  99.93%            0   0.00%
-  RAM         20000000-2000ffff       65 536        1 036   1.58%       64 500  98.42%            0   0.00%
+  FLASH       00000000-000fffff    1 048 576        1 008   0.10%    1 047 568  99.90%            0   0.00%
+  RAM         20000000-2000ffff       65 536        1 052   1.61%       64 484  98.39%            0   0.00%
 
 Link complete: 0 errors, 2 warnings, 0 remarks

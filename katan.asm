@@ -1,17 +1,10 @@
 /* Call a simple assembly function */
 .data
 plain_text:
-.word 0x12345678, 0xfff80000, 0x0007ffff, 0x44556677, 0x00112233, 0xccddeeff, 0x8899aabb
+.word 0x12345678, 0xfff80000, 0x0007ffff
 
 .text
-.global MAIN
-
-MAIN:
-
-jal RECTANGLE
-jal KATAN32
-
-ret
+.global KATAN32
 
 KATAN32:
 
@@ -44,8 +37,10 @@ srli s4, s4, 13
 
 add s3, s3, s1
 add s4, s4, s0
-slli s3, s3, 19 // This round will hold a 0x048d in L1.
-add a0, s3, s4 // This is the sum of the L1 and L2.
+slli s3, s3, 19
+add a0, s3, s4
+
+nop
 
 ret
 
@@ -136,78 +131,4 @@ lw s2, 8(sp)
 lw s3, 12(sp)
 lw s4, 16(sp)
 addi sp, sp, 20
-ret
-
-RECTANGLE:
-addi sp, sp, -4
-sw s0, 0(sp)
-
-la t0, plain_text
-
-lhu a0, 12(t0) // 0th row
-lhu a1, 14(t0) // 1st row
-lhu a2, 16(t0) // 2nd row
-lhu a3, 18(t0) // 3rd row
-
-lhu a4, 20(t0) // lowest part of the round key.
-lhu a5, 22(t0)
-lhu a6, 24(t0)
-lhu a7, 26(t0) // highest part of the round key.
-
-// add round key.
-xor a0, a0, a4
-xor a1, a1, a5
-xor a2, a2, a6
-xor a3, a3, a7
-
-not s1, a1
-and s2, a0, s1
-xor s3, a2, a3
-xor a4, s2, s3 // a4 as B0
-or  s4, a3, s1
-xor s5, a0, s4
-xor a5, a2, s5 // a5 as B1
-xor s7, a1, a2
-and s8, s3, s5
-xor a7, s7, s8 // a7 as B3
-or  s9, a4, s7
-xor a6, s5, s9 // a6 as B2 
-
-addi a0, a4, 0
-addi a1, a5, 0
-addi a2, a6, 0
-addi a3, a7, 0
-
-// masks
-li t0, 0x8000
-li t1, 0x7fff
-
-and s0, a1, t0 // left hand side part
-and s1, a1, t1 // right hand side part
-srl s0, s0, 15
-sll s1, s1, 1
-add a1, s0, s1
-
-li t0, 0xf000
-li t1, 0x0fff
-and s0, a2, t0
-and s1, a2, t1
-srl s0, s0, 12
-sll s1, s1, 4
-add a2, s0, s1
-
-li t0, 0xe000
-li t1, 0x1fff
-and s0, a3, t0
-and s1, a3, t1
-srl s0, s0, 13
-sll s1, s1, 3
-add a3, s0, s1
-
-// The result is: {a3, a2, a1, a0}.
-
-nop
-lw s0, 0(sp)
-addi sp, sp, 4
-
 ret
